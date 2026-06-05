@@ -1450,16 +1450,18 @@
       submitBtn.textContent = 'Sending...';
       formError.style.display = 'none';
       try {
+        const data = { name: contactForm.name.value, email: contactForm.email.value, message: contactForm.message.value };
         const res = await fetch(contactForm.action, {
           method: 'POST',
-          body: new FormData(contactForm),
-          headers: { 'Accept': 'application/json' }
+          body: JSON.stringify(data),
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
         });
         if (res.ok) {
           contactForm.style.display = 'none';
           formSuccess.style.display = 'block';
         } else {
-          throw new Error('Form failed');
+          const errData = await res.json().catch(() => ({}));
+          throw new Error(errData.error || 'Form failed');
         }
       } catch (err) {
         formError.textContent = 'Something went wrong. Email me directly at rainsngspr@gmail.com';
