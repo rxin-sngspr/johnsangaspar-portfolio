@@ -5,21 +5,39 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Work & Results - John San Gaspar | Executive Operations Partner</title>
 <meta name="description" content="Real case studies and work samples from John San Gaspar's work as an Executive Operations Partner. Pipeline acceleration, operations overhaul, customer experience transformation.">
-<meta name="keywords" content="Executive Operations case studies, operations portfolio, workflow automation results, EA metrics, founder support, Notion portfolio, Canva portfolio">
+<meta name="keywords" content="Executive Operations case studies, operations portfolio, workflow automation results, EA metrics, founder support, Notion portfolio, Canva portfolio, SOP samples">
 <meta name="author" content="John San Gaspar">
 <meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0f0f0f">
 <link rel="canonical" href="https://rxin-sngspr.github.io/johnsangaspar-portfolio/work.html">
 <meta property="og:title" content="Work & Results - John San Gaspar | Executive Operations Partner">
 <meta property="og:description" content="Real case studies and work samples from John San Gaspar. Pipeline acceleration, operations overhaul, and customer experience transformation.">
 <meta property="og:url" content="https://rxin-sngspr.github.io/johnsangaspar-portfolio/work.html">
 <meta property="og:image" content="https://rxin-sngspr.github.io/johnsangaspar-portfolio/assets/rainpicture.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="John San Gaspar | Executive Operations Partner">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Work & Results - John San Gaspar | Executive Operations Partner">
 <meta name="twitter:description" content="Real case studies and work samples from John San Gaspar's work.">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"John San Gaspar","jobTitle":"Executive Operations Partner","url":"https://rxin-sngspr.github.io/johnsangaspar-portfolio","email":"rainsngspr@gmail.com","sameAs":["https://linkedin.com/in/ea-johnsngspr"]}</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "John San Gaspar",
+  "jobTitle": "Executive Operations Partner",
+  "url": "https://rxin-sngspr.github.io/johnsangaspar-portfolio",
+  "email": "rainsngspr@gmail.com",
+  "image": "https://rxin-sngspr.github.io/johnsangaspar-portfolio/assets/rainpicture.jpg",
+  "sameAs": ["https://linkedin.com/in/ea-johnsngspr"]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 <style>
   :root {
     --bg: #0f0f0f;
@@ -240,6 +258,29 @@
   }
   .sample-link:hover { color: var(--accent2); }
 
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+  .hamburger span { width: 20px; height: 2px; background: var(--white); border-radius: 2px; transition: transform 0.2s, opacity 0.2s; }
+  .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.active span:nth-child(2) { opacity: 0; }
+  .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  #backToTop {
+    position: fixed; bottom: 28px; right: 28px;
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    z-index: 999;
+    opacity: 0; transform: translateY(12px);
+    transition: opacity 0.3s, transform 0.3s, background 0.2s, border-color 0.2s, color 0.2s;
+    pointer-events: none;
+  }
+  #backToTop.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+  #backToTop:hover { background: var(--green-dim); border-color: var(--green); color: var(--green); }
+
   .btn-primary {
     background: var(--green);
     color: #0a0a0a;
@@ -346,16 +387,25 @@
   }
   .social-icon svg { width: 14px; height: 14px; fill: currentColor; }
 
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
+
 
   @media (max-width: 768px) {
     nav { padding: 14px 20px; }
-    .nav-links { display: none; }
+    .nav-links {
+      display: none;
+      position: fixed; top: 56px; left: 0; right: 0;
+      background: rgba(15,15,15,0.97);
+      backdrop-filter: blur(14px);
+      flex-direction: column; gap: 0;
+      padding: 8px 16px 16px;
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links a { padding: 12px 8px; font-size: 0.85rem; border-bottom: 1px solid var(--border); }
+    .nav-links a:last-child { border-bottom: none; }
+    .nav-cta-desktop { display: none; }
+    .hamburger { display: flex; }
     section { padding: 48px 20px; }
     .page-header { padding: 100px 20px 40px; }
     .case-card { grid-template-columns: 1fr; gap: 20px; padding: 24px 20px; }
@@ -364,6 +414,31 @@
     .footer-right { align-items: center; }
     .footer-links { flex-wrap: wrap; justify-content: center; gap: 20px; }
     .cta-banner { padding: 64px 20px; }
+    .screenshot-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 12px;
+    }
+    .screenshot-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: border-color 0.25s, transform 0.2s;
+    }
+    .screenshot-card:hover {
+      border-color: #4ade8044;
+      transform: translateY(-3px);
+    }
+    .screenshot-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    @media (max-width: 768px) {
+      .screenshot-grid { grid-template-columns: repeat(2, 1fr); }
+    }
   }
 </style>
 </head>
@@ -371,18 +446,22 @@
 
 <nav>
   <a href="index.html" class="nav-logo">John San Gaspar<span>.</span></a>
-  <ul class="nav-links">
+  <ul class="nav-links" id="navLinks">
     <li><a href="index.html">Home</a></li>
     <li><a href="index.html#about">About</a></li>
     <li><a href="index.html#services">Services</a></li>
     <li><a href="work.html">Work</a></li>
     <li><a href="index.html#faq">FAQ</a></li>
+    <li><a href="index.html#book">Book</a></li>
     <li><a href="index.html#contact-section">Contact</a></li>
   </ul>
-  <a href="https://calendly.com/rainsngspr/discovery-call-with-john" target="_blank" class="nav-cta">Book a Call</a>
+  <a href="https://calendly.com/rainsngspr/discovery-call-with-john" target="_blank" class="nav-cta nav-cta-desktop">Book a Call</a>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
-<div class="page-header reveal">
+<div class="page-header" data-aos="fade-up">
   <div class="section-label">Proof of Work</div>
   <h1>Results, not promises.</h1>
   <p>Every story here comes from real client work. I do not inflate numbers or fake names. This is what I have actually done.</p>
@@ -392,7 +471,7 @@
   <div class="section-inner">
     <div class="case-grid">
 
-      <div class="case-card reveal">
+      <div class="case-card" data-aos="fade-up">
         <div class="case-left">
           <div class="case-type">Sales Operations</div>
           <div class="case-title">Built a pipeline engine from scratch</div>
@@ -419,7 +498,7 @@
         </div>
       </div>
 
-      <div class="case-card reveal">
+      <div class="case-card" data-aos="fade-up">
         <div class="case-left">
           <div class="case-type">Operations & Systems</div>
           <div class="case-title">Replaced chaos with a system that scales</div>
@@ -446,7 +525,7 @@
         </div>
       </div>
 
-      <div class="case-card reveal">
+      <div class="case-card" data-aos="fade-up">
         <div class="case-left">
           <div class="case-type">Customer Experience</div>
           <div class="case-title">Turned a high-volume support desk into a machine</div>
@@ -473,11 +552,55 @@
         </div>
       </div>
 
+      <div class="case-card" data-aos="fade-up">
+        <div class="case-left">
+          <div class="case-type">App Development - Flutter</div>
+          <div class="case-title">Built RainDrop - A Self-Made Water Tracker App</div>
+          <div class="case-client">Personal Project | June 2026</div>
+          <div class="case-section">
+            <div class="case-section-label">The Situation</div>
+            <p>John wanted a free, offline-first water intake tracker with no ads. No existing app matched what he wanted - a beautiful Material Design 3 interface, dark/light mode, interactive progress ring, and a real Android home screen widget. So he built one himself using Flutter.</p>
+          </div>
+          <div class="case-section">
+            <div class="case-section-label">What I Did</div>
+            <p>Designed and developed RainDrop from scratch using Flutter and Dart. Built the entire app architecture: Hive for local storage, Riverpod for state management, fl_chart for monthly hydration charts, and Material Design 3 with ocean-blue theming. Implemented an animated progress ring for daily tracking, quick-add buttons (250ml/500ml/1L/custom), dark mode toggle, daily notification reminders, and a first-launch onboarding flow. The Android home screen widget updates live with current intake.</p>
+          </div>
+        </div>
+        <div class="case-right">
+          <div class="case-impact">
+            <div class="case-impact-label">The Impact</div>
+            <ul class="case-impact-list">
+              <li>A fully functional, ad-free, offline water tracker that runs on Android.</li>
+              <li>Widget updates without opening the app.</li>
+              <li>Notifications remind John to hydrate at 9 AM and 6 PM.</li>
+              <li>Clean Material 3 design with smooth animations and haptic feedback - on par with premium apps, built for free.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="images-section" data-aos="fade-up" style="margin-top: 24px;">
+      <div class="section-label">Screenshots</div>
+      <h2 class="section-title" style="margin-bottom: 20px;">RainDrop in action.</h2>
+      <div class="screenshot-grid">
+        <div class="screenshot-card"><img src="assets/tracker1.jpg" alt="RainDrop home screen" loading="lazy" /></div>
+        <div class="screenshot-card"><img src="assets/tracker2.jpg" alt="RainDrop history chart" loading="lazy" /></div>
+        <div class="screenshot-card"><img src="assets/tracker3.jpg" alt="RainDrop settings and theme" loading="lazy" /></div>
+        <div class="screenshot-card"><img src="assets/tracker4.jpg" alt="RainDrop widget" loading="lazy" /></div>
+      </div>
+      <div style="margin-top: 24px; text-align: center;">
+        <a href="https://github.com/rxin-sngspr/raindrop-water-tracker" target="_blank" rel="noopener" class="btn-outline" style="gap: 6px;">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          View on GitHub
+        </a>
+      </div>
     </div>
   </div>
 </section>
 
-<div class="samples-section reveal">
+<div class="samples-section" data-aos="fade-up">
   <div class="section-inner">
     <div class="section-label">Work Samples</div>
     <h2 class="section-title">See my work in action.</h2>
@@ -498,11 +621,16 @@
         <p>Sample SOPs covering client onboarding, email management, calendar systems, and workflow automation documentation.</p>
         <a href="https://app.notion.com/p/Sample-SOPs-320b2709504880a5a80ed530dc76acd0?source=copy_link" target="_blank" rel="noopener" class="sample-link">View SOPs &rarr;</a>
       </div>
+      <div class="sample-card">
+        <h4>RainDrop App - Flutter</h4>
+        <p>A fully functional water intake tracker built with Flutter and Dart. Material Design 3, dark mode, home widget, and daily reminders.</p>
+        <a href="https://github.com/rxin-sngspr/raindrop-water-tracker" target="_blank" rel="noopener" class="sample-link">View on GitHub &rarr;</a>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="cta-banner reveal">
+<div class="cta-banner" data-aos="fade-up">
   <h2>Need results like these?</h2>
   <p>Let's talk about what you need and how I can help.</p>
   <div class="cta-actions">
@@ -539,16 +667,35 @@
   </div>
 </footer>
 
+<button id="backToTop" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script defer>
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 60);
-      }
+  AOS.init({ duration: 600, once: true, offset: 80 });
+
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  if (hamburger) {
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('open');
     });
-  }, { threshold: 0.1 });
-  reveals.forEach(el => observer.observe(el));
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('open');
+      });
+    });
+  }
+
+  const backBtn = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    backBtn.classList.toggle('show', window.scrollY > 400);
+  }, { passive: true });
+  backBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 </script>
 </body>
 </html>
