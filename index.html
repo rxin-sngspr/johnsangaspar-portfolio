@@ -1607,13 +1607,13 @@
 
   // ACTIVE NAV
   const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a');
+  const navLinkItems = document.querySelectorAll('.nav-links a');
   window.addEventListener('scroll', () => {
     let current = '';
     sections.forEach(s => {
       if (window.scrollY >= s.offsetTop - 120) current = s.getAttribute('id');
     });
-    navLinks.forEach(a => {
+    navLinkItems.forEach(a => {
       a.style.color = a.getAttribute('href') === '#' + current ? 'var(--white)' : '';
     });
   });
