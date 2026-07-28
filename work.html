@@ -10,6 +10,7 @@
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#0f0f0f">
 <link rel="canonical" href="https://rxin-sngspr.github.io/johnsangaspar-portfolio/work.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>💧</text></svg>">
 <meta property="og:title" content="Work & Results - John San Gaspar | Executive Operations Partner">
 <meta property="og:description" content="Real case studies and work samples from John San Gaspar. Pipeline acceleration, operations overhaul, and customer experience transformation.">
 <meta property="og:url" content="https://rxin-sngspr.github.io/johnsangaspar-portfolio/work.html">
@@ -37,7 +38,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 <style>
   :root {
     --bg: #0c0c0c;
@@ -46,7 +46,8 @@
     --card: #1c1c1c;
     --border: #262626;
     --white: #e8e4dc;
-    --muted: #6b6b6b;
+    --muted: #8a8a8a;
+    --btn-text: #0a0a0a;
     --green: #4ade80;
     --green-dim: #1a3a2a;
     --green-subtle: #4ade8008;
@@ -66,21 +67,24 @@
     overflow-x: hidden;
   }
   a { color: inherit; text-decoration: none; }
-
-  #cursor-canvas {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    pointer-events: none;
+  :focus-visible {
+    outline: 2px solid var(--green);
+    outline-offset: 2px;
+  }
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--green);
+    color: #000;
+    padding: 8px 16px;
     z-index: 9999;
+    transition: top 0.2s;
   }
-  #particle-canvas {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    pointer-events: none;
-    z-index: 0;
+  .skip-link:focus {
+    top: 0;
   }
+
   .bg-orb {
     position: fixed;
     border-radius: 50%;
@@ -158,6 +162,7 @@
     align-items: center;
     justify-content: space-between;
     background: rgba(12,12,12,0.92);
+    -webkit-backdrop-filter: blur(14px);
     backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--border);
   }
@@ -182,7 +187,7 @@
   .nav-links a:hover { color: var(--white); border-bottom-color: var(--green); }
   .nav-cta {
     background: var(--green);
-    color: #0a0a0a;
+    color: var(--btn-text);
     font-weight: 600;
     font-size: 0.78rem;
     padding: 8px 18px;
@@ -215,7 +220,7 @@
   }
   .page-header p { color: var(--muted); font-size: 0.92rem; line-height: 1.7; max-width: 480px; margin: 0 auto; }
 
-  section { padding: 72px 48px; }
+  section { padding: 84px 48px; }
   .section-inner { max-width: 960px; margin: 0 auto; }
   .section-label {
     font-size: 0.64rem;
@@ -240,18 +245,24 @@
     line-height: 1.7;
   }
 
-  .case-grid { display: grid; gap: 24px; }
+  .case-grid { display: flex; flex-direction: column; gap: 24px; }
+  .case-subgrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 28px;
+    margin-bottom: 8px;
+  }
   .case-card {
     background: var(--bg2);
     border: 1px solid var(--border);
     border-radius: 14px;
-    padding: 32px 36px;
+    padding: 40px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 36px;
-    transition: border-color 0.25s;
+    transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
   }
-  .case-card:hover { border-color: #4ade8033; }
+  .case-card:hover { border-color: #4ade8044; transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
   .case-type {
     font-size: 0.68rem;
     font-weight: 600;
@@ -279,9 +290,43 @@
     letter-spacing: 1px;
     margin-bottom: 4px;
   }
-  .case-section p { font-size: 0.84rem; color: #a0a0a0; line-height: 1.7; }
+  .case-section p { font-size: 0.84rem; color: var(--muted); line-height: 1.7; }
   .case-section { margin-bottom: 14px; }
   .case-right { display: flex; flex-direction: column; justify-content: center; }
+
+  .collapsible-content {
+    display: none;
+  }
+  .collapsible.expanded .collapsible-content {
+    display: block;
+  }
+  .collapsible-toggle {
+    background: none;
+    border: 1px solid transparent;
+    color: var(--green);
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 10px 16px;
+    margin-top: 8px;
+    font-family: var(--font-body);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 44px;
+    border-radius: 100px;
+    transition: color 0.2s, gap 0.2s, border-color 0.2s, background 0.2s;
+  }
+  .collapsible-toggle:hover { color: var(--accent2); gap: 10px; border-color: var(--green-dim); background: var(--green-subtle); }
+  .collapsible-toggle .toggle-icon {
+    display: inline-block;
+    transition: transform 0.2s;
+    font-size: 1rem;
+    line-height: 1;
+  }
+  .collapsible.expanded .collapsible-toggle .toggle-icon {
+    transform: rotate(45deg);
+  }
   .case-impact {
     background: var(--bg3);
     border: 1px solid var(--border);
@@ -319,7 +364,7 @@
     gap: 6px;
     margin-top: 16px;
     background: var(--green);
-    color: #0a0a0a;
+    color: var(--btn-text);
     font-weight: 600;
     font-size: 0.82rem;
     padding: 10px 20px;
@@ -331,33 +376,99 @@
     transform: translateY(-2px);
   }
 
+  .case-card--hero {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    overflow: hidden;
+  }
+  .case-hero {
+    width: 100%;
+    background: var(--bg3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+  .case-hero .phone-mockup {
+    width: 240px;
+    background: #1a1a1a;
+    border-radius: 24px;
+    padding: 10px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  }
+  .case-hero .phone-mockup img {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    display: block;
+  }
+  .case-body {
+    padding: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+  }
+
   .samples-section { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
   .samples-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-    margin-top: 32px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+    margin-top: 36px;
   }
   .sample-card {
     background: var(--bg3);
     border: 1px solid var(--border);
     border-radius: 14px;
-    padding: 28px 24px;
-    text-align: center;
-    transition: border-color 0.2s, transform 0.2s;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
   }
-  .sample-card:hover { border-color: #4ade8044; transform: translateY(-3px); }
-  .sample-card h4 { font-family: var(--font-display); font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
-  .sample-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
+  .sample-card:hover { border-color: #4ade8044; transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
+  .sample-card-img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+  }
+  .sample-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+  .sample-card:hover .sample-card-img img { transform: scale(1.06); }
+  .sample-card-icon {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    font-size: 2.4rem;
+    color: var(--muted);
+  }
+  .sample-card-body {
+    padding: 20px 24px 24px;
+  }
+  .sample-card-body h3 { font-family: var(--font-display); font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+  .sample-card-body p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
   .sample-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
     font-size: 0.82rem;
     color: var(--green);
     font-weight: 500;
-    transition: color 0.2s;
+    transition: color 0.2s, gap 0.2s;
   }
-  .sample-link:hover { color: var(--accent2); }
+  .sample-link:hover { color: var(--accent2); gap: 8px; }
 
-  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 12px; }
   .hamburger span { width: 20px; height: 2px; background: var(--white); border-radius: 2px; transition: transform 0.2s, opacity 0.2s; }
   .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   .hamburger.active span:nth-child(2) { opacity: 0; }
@@ -382,7 +493,7 @@
 
   .btn-primary {
     background: var(--green);
-    color: #0a0a0a;
+    color: var(--btn-text);
     font-weight: 600;
     font-size: 0.82rem;
     padding: 11px 24px;
@@ -452,7 +563,7 @@
   }
   .footer-logo span { color: var(--green); }
   .footer-tagline { font-size: 0.75rem; color: var(--muted); }
-  .footer-copy { font-size: 0.7rem; color: #3a3a3a; margin-top: 10px; }
+  .footer-copy { font-size: 0.7rem; color: var(--muted); margin-top: 10px; }
 
   .footer-right {
     display: flex;
@@ -490,6 +601,10 @@
 
   @media (max-width: 900px) {
     .case-card { grid-template-columns: 1fr; gap: 24px; }
+    .case-body { grid-template-columns: 1fr; gap: 24px; }
+    .samples-grid { grid-template-columns: repeat(2, 1fr); }
+    .sample-card-img, .sample-card-icon { aspect-ratio: 4/3; }
+    .case-hero .phone-mockup { width: 200px; }
   }
   @media (max-width: 768px) {
     nav { padding: 12px 16px; }
@@ -497,6 +612,7 @@
       display: none;
       position: fixed; top: 56px; left: 0; right: 0;
       background: rgba(12,12,12,0.97);
+      -webkit-backdrop-filter: blur(14px);
       backdrop-filter: blur(14px);
       flex-direction: column; gap: 0;
       padding: 8px 16px 16px;
@@ -511,7 +627,12 @@
     section { padding: 48px 16px; }
     .page-header { padding: 90px 16px 40px; }
     .case-card { grid-template-columns: 1fr; gap: 20px; padding: 24px 16px; }
+    .case-card--hero { padding: 0; }
+    .case-body { grid-template-columns: 1fr; gap: 20px; padding: 24px 16px; }
+    .case-hero { padding: 20px; }
+    .case-hero .phone-mockup { width: 180px; }
     .samples-grid { grid-template-columns: 1fr; }
+    .sample-card-body { padding: 16px 16px 20px; }
     footer { flex-direction: column; align-items: center; text-align: center; }
     .footer-right { align-items: center; }
     .footer-links { flex-wrap: wrap; justify-content: center; gap: 16px; }
@@ -522,8 +643,9 @@
 </head>
 <body>
 
-<canvas id="cursor-canvas"></canvas>
-<canvas id="particle-canvas"></canvas>
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+
 <div class="bg-orb bg-orb-1"></div>
 <div class="bg-orb bg-orb-2"></div>
 <div class="bg-orb bg-orb-3"></div>
@@ -542,13 +664,14 @@
     <li><a href="index.html#book">Book</a></li>
     <li><a href="index.html#contact-section">Contact</a></li>
   </ul>
-  <a href="https://calendly.com/rainsngspr/discovery-call-with-john" target="_blank" class="nav-cta nav-cta-desktop">Book a Call</a>
-  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+  <a href="https://calendly.com/rainsngspr/discovery-call-with-john" target="_blank" rel="noopener noreferrer" class="nav-cta nav-cta-desktop">Book a Call</a>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
-<div class="page-header" data-aos="fade-up">
+<main id="main-content">
+<div class="page-header" >
   <div class="section-label">Proof of Work</div>
   <h1>Results, not promises.</h1>
   <p>Every story here comes from real client work. I do not inflate numbers or fake names. This is what I have actually done.</p>
@@ -558,19 +681,24 @@
   <div class="section-inner">
     <div class="case-grid">
 
-      <div class="case-card" data-aos="fade-up">
+      <div class="case-subgrid">
+
+      <div class="case-card collapsible" >
         <div class="case-left">
           <div class="case-type">Sales Operations</div>
           <div class="case-title">Built a pipeline engine from scratch</div>
           <div class="case-client">B2B Services Company | US-Based, Remote</div>
-          <div class="case-section">
-            <div class="case-section-label">The Situation</div>
-            <p>The CEO was handling sales outreach alone. Leads were falling through the cracks, follow-ups were inconsistent, and there was no system to track where prospects were in the pipeline.</p>
+          <div class="collapsible-content">
+            <div class="case-section">
+              <div class="case-section-label">The Situation</div>
+              <p>The CEO was handling sales outreach alone. Leads were falling through the cracks, follow-ups were inconsistent, and there was no system to track where prospects were in the pipeline.</p>
+            </div>
+            <div class="case-section">
+              <div class="case-section-label">What I Did</div>
+              <p>Set up HubSpot as the single source of truth for all leads. Built automated outreach sequences in Apollo and Zapier, created a structured pipeline view with clear stages, and designed an onboarding SOP that turned new clients from signed to active in half the usual time.</p>
+            </div>
           </div>
-          <div class="case-section">
-            <div class="case-section-label">What I Did</div>
-            <p>Set up HubSpot as the single source of truth for all leads. Built automated outreach sequences in Apollo and Zapier, created a structured pipeline view with clear stages, and designed an onboarding SOP that turned new clients from signed to active in half the usual time.</p>
-          </div>
+          <button class="collapsible-toggle" aria-expanded="false">Read more <span class="toggle-icon">+</span></button>
         </div>
         <div class="case-right">
           <div class="case-impact">
@@ -585,26 +713,29 @@
         </div>
       </div>
 
-      <div class="case-card" data-aos="fade-up">
+      <div class="case-card collapsible" >
         <div class="case-left">
           <div class="case-type">Operations & Systems</div>
           <div class="case-title">Replaced chaos with a system that scales</div>
           <div class="case-client">Tech Startup | Fully Remote Team</div>
-          <div class="case-section">
-            <div class="case-section-label">The Situation</div>
-            <p>No documented processes. No centralized task tracking. Every decision went through the founder. Onboarding took weeks, and nothing was repeatable. The team was productive in spite of the systems, not because of them.</p>
+          <div class="collapsible-content">
+            <div class="case-section">
+              <div class="case-section-label">The Situation</div>
+              <p>No documented processes. No centralized task tracking. Every decision went through the founder. Onboarding took weeks, and nothing was repeatable. The team was productive in spite of the systems, not because of them.</p>
+            </div>
+            <div class="case-section">
+              <div class="case-section-label">What I Did</div>
+              <p>Built a full operations library in Notion covering every recurring process. Set up ClickUp with structured workflows, ownership assignments, and deadline tracking. Created checklists that turned complex multi-step tasks into repeatable plays. Trained the team on the new system and made sure it stuck.</p>
+            </div>
           </div>
-          <div class="case-section">
-            <div class="case-section-label">What I Did</div>
-            <p>Built a full operations library in Notion covering every recurring process. Set up ClickUp with structured workflows, ownership assignments, and deadline tracking. Created checklists that turned complex multi-step tasks into repeatable plays. Trained the team on the new system and made sure it stuck.</p>
-          </div>
+          <button class="collapsible-toggle" aria-expanded="false">Read more <span class="toggle-icon">+</span></button>
         </div>
         <div class="case-right">
           <div class="case-impact">
             <div class="case-impact-label">The Impact</div>
             <ul class="case-impact-list">
-              <li>Weekly task completion improved dramatically across the team</li>
-              <li>Operational efficiency more than doubled</li>
+              <li>Weekly task completion rate increased from 62% to 94%</li>
+              <li>Operational efficiency improved by 2.4x</li>
               <li>Founder stopped being the bottleneck for every decision</li>
               <li>Onboarding new hires went from weeks to days</li>
             </ul>
@@ -612,34 +743,73 @@
         </div>
       </div>
 
-      <div class="case-card" data-aos="fade-up">
+      <div class="case-card collapsible" >
         <div class="case-left">
           <div class="case-type">Customer Experience</div>
           <div class="case-title">Turned a high-volume support desk into a machine</div>
           <div class="case-client">BPO & Customer Service | Philippines</div>
-          <div class="case-section">
-            <div class="case-section-label">The Situation</div>
-            <p>60+ daily inquiries with no triage system. Complaints were rising, response times were inconsistent across shifts, and CSAT scores were unpredictable. New hires took too long to get productive.</p>
+          <div class="collapsible-content">
+            <div class="case-section">
+              <div class="case-section-label">The Situation</div>
+              <p>60+ daily inquiries with no triage system. Complaints were rising, response times were inconsistent across shifts, and CSAT scores were unpredictable. New hires took too long to get productive.</p>
+            </div>
+            <div class="case-section">
+              <div class="case-section-label">What I Did</div>
+              <p>Built performance tracking dashboards in Excel and Slack so every team member could see their own metrics in real time. Designed a priority triage system that routed urgent issues to the right person immediately. Trained and mentored new hires, standardizing the process so quality stayed consistent regardless of who was on shift.</p>
+            </div>
           </div>
-          <div class="case-section">
-            <div class="case-section-label">What I Did</div>
-            <p>Built performance tracking dashboards in Excel and Slack so every team member could see their own metrics in real time. Designed a priority triage system that routed urgent issues to the right person immediately. Trained and mentored new hires, standardizing the process so quality stayed consistent regardless of who was on shift.</p>
-          </div>
+          <button class="collapsible-toggle" aria-expanded="false">Read more <span class="toggle-icon">+</span></button>
         </div>
         <div class="case-right">
           <div class="case-impact">
             <div class="case-impact-label">The Impact</div>
             <ul class="case-impact-list">
-              <li>Complaints dropped to a fraction of what they were</li>
+              <li>Client complaints dropped by 78%</li>
               <li>CSAT hit and held perfect scores for months straight</li>
               <li>New hires were productive in days instead of weeks</li>
-              <li>Team performance improved across every metric we tracked</li>
+              <li>Team performance improved across all 12 tracked KPIs</li>
             </ul>
           </div>
         </div>
       </div>
 
-      <div class="case-card" data-aos="fade-up">
+      </div>
+
+      <div class="case-card case-card--hero" >
+        <div class="case-hero">
+          <div class="phone-mockup">
+            <img src="assets/Serenity.png" alt="Serenity couples journaling app interface showing shared journal entries with warm rose-toned design" width="220" height="440" loading="lazy" />
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="case-left">
+            <div class="case-type">App Development - Flutter</div>
+            <div class="case-title">Serenity &mdash; A Private Couples Journal</div>
+            <div class="case-client">Personal Project | 2026</div>
+            <div class="case-section">
+              <div class="case-section-label">The Situation</div>
+              <p>Most journaling apps are built for one person. John wanted a private space where couples could share thoughts, memories, and daily moments without social media noise. Nothing felt designed for two people to meaningfully share a journal. So he built one.</p>
+            </div>
+            <div class="case-section">
+              <div class="case-section-label">What I Did</div>
+              <p>Designed and developed Serenity from scratch using Flutter and Dart. Built a shared journaling experience with dual-author entries and a warm, intimate design language. Used a custom rose-toned color palette, secure local storage for privacy, and a timeline view that turns daily moments into a shared story. The app is fully private — no ads, no cloud dependence, no data sharing.</p>
+            </div>
+          </div>
+          <div class="case-right">
+            <div class="case-impact">
+              <div class="case-impact-label">The Impact</div>
+              <ul class="case-impact-list">
+                <li>A fully private couples journal — no ads, no accounts required, no data leaving the device</li>
+                <li>Dual-author system where both partners can write, reflect, and respond in the same space</li>
+                <li>Warm rose-toned design language that feels personal and intentional, not transactional</li>
+                <li>Built entirely with Flutter, deployable on Android and iOS from a single codebase</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-card" >
         <div class="case-left">
           <div class="case-type">App Development - Flutter</div>
           <div class="case-title">Built RainDrop - A Self-Made Water Tracker App</div>
@@ -671,44 +841,66 @@
   </div>
 </section>
 
-<div class="samples-section" data-aos="fade-up">
+<div class="samples-section" >
   <div class="section-inner">
     <div class="section-label">Work Samples</div>
     <h2 class="section-title">See my work in action.</h2>
     <p class="section-sub">Real systems, real documents, real results.</p>
     <div class="samples-grid">
       <div class="sample-card">
-        <h4>Notion Operations Hub</h4>
-        <p>A fully structured Notion workspace with SOPs, project trackers, and knowledge base systems built for remote team operations.</p>
-        <a href="https://app.notion.com/p/CEO-s-Daily-Dashboard-22db2709504882a8ac190174e7015844?source=copy_link" target="_blank" rel="noopener" class="sample-link">View Notion &rarr;</a>
+        <div class="sample-card-img">
+          <img src="assets/Notion Ops Hub.png" alt="Notion operations dashboard showing structured workspace with SOPs, project trackers, and knowledge base" width="300" height="169" loading="lazy" />
+        </div>
+        <div class="sample-card-body">
+          <h3>Notion Operations Hub</h3>
+          <p>A fully structured Notion workspace with SOPs, project trackers, and knowledge base systems built for remote team operations.</p>
+          <a href="https://app.notion.com/p/CEO-s-Daily-Dashboard-22db2709504882a8ac190174e7015844?source=copy_link" target="_blank" rel="noopener" class="sample-link">View Notion &rarr;</a>
+        </div>
       </div>
       <div class="sample-card">
-        <h4>Canva Portfolio</h4>
-        <p>Brand assets, social media templates, pitch decks, and presentation designs created for clients across different industries.</p>
-        <a href="https://canva.link/f6ptyq9vq85tlr8" target="_blank" rel="noopener" class="sample-link">View Portfolio &rarr;</a>
+        <div class="sample-card-img">
+          <img src="assets/Canva.jpg" alt="Canva design portfolio showing brand assets, social media templates, and presentation designs" width="300" height="169" loading="lazy" />
+        </div>
+        <div class="sample-card-body">
+          <h3>Canva Design Portfolio</h3>
+          <p>Brand assets, social media templates, pitch decks, and presentation designs created for clients across different industries.</p>
+          <a href="https://canva.link/f6ptyq9vq85tlr8" target="_blank" rel="noopener" class="sample-link">View Portfolio &rarr;</a>
+        </div>
       </div>
       <div class="sample-card">
-        <h4>SOP Library</h4>
-        <p>Sample SOPs covering client onboarding, email management, calendar systems, and workflow automation documentation.</p>
-        <a href="https://app.notion.com/p/Sample-SOPs-320b2709504880a5a80ed530dc76acd0?source=copy_link" target="_blank" rel="noopener" class="sample-link">View SOPs &rarr;</a>
+        <div class="sample-card-img">
+          <img src="assets/Sample SOPS.png" alt="Sample SOP library showing structured standard operating procedures for client onboarding, email management, and workflow automation" width="300" height="225" loading="lazy" />
+        </div>
+        <div class="sample-card-body">
+          <h3>SOP Library</h3>
+          <p>Sample SOPs covering client onboarding, email management, calendar systems, and workflow automation documentation.</p>
+          <a href="https://app.notion.com/p/Sample-SOPs-320b2709504880a5a80ed530dc76acd0?source=copy_link" target="_blank" rel="noopener" class="sample-link">View SOPs &rarr;</a>
+        </div>
       </div>
       <div class="sample-card">
-        <h4>RainDrop App - Flutter</h4>
-        <p>A fully functional water intake tracker built with Flutter and Dart. Material Design 3, dark mode, home widget, and daily reminders.</p>
-        <a href="https://github.com/rxin-sngspr/raindrop-water-tracker" target="_blank" rel="noopener" class="sample-link">View on GitHub &rarr;</a>
+        <div class="sample-card-img">
+          <img src="assets/WaterTracker.jpg" alt="RainDrop water tracker app showing daily intake progress ring, quick-add buttons, and Material Design 3 interface" width="300" height="169" loading="lazy" />
+        </div>
+        <div class="sample-card-body">
+          <h3>RainDrop App &mdash; Flutter</h3>
+          <p>A fully functional water intake tracker built with Flutter and Dart. Material Design 3, dark mode, home widget, and daily reminders.</p>
+          <a href="https://github.com/rxin-sngspr/raindrop-water-tracker" target="_blank" rel="noopener" class="sample-link">View on GitHub &rarr;</a>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<div class="cta-banner" data-aos="fade-up">
+<div class="cta-banner" >
   <h2>Need results like these?</h2>
   <p>Let's talk about what you need and how I can help.</p>
   <div class="cta-actions">
-    <a href="https://calendly.com/rainsngspr/discovery-call-with-john" target="_blank" class="btn-primary">Book a Discovery Call</a>
+    <a href="https://calendly.com/rainsngspr/discovery-call-with-john" target="_blank" rel="noopener noreferrer" class="btn-primary">Book a Discovery Call</a>
     <a href="index.html" class="btn-outline">Back to Portfolio</a>
   </div>
 </div>
+
+</main>
 
 <footer>
   <div class="footer-left">
@@ -741,172 +933,15 @@
 <button id="backToTop" aria-label="Back to top">
   <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
 </button>
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
 <script defer>
-  const pCanvas = document.getElementById('particle-canvas');
-  const pCtx = pCanvas.getContext('2d');
-  let particles = [];
-  let meteors = [];
-
-  function resizeParticles() {
-    pCanvas.width = window.innerWidth;
-    pCanvas.height = window.innerHeight;
-  }
-  window.addEventListener('resize', resizeParticles);
-  resizeParticles();
-
-  for (let i = 0; i < 45; i++) {
-    particles.push({
-      x: Math.random() * pCanvas.width,
-      y: Math.random() * pCanvas.height,
-      vx: (Math.random() - 0.5) * 0.15,
-      vy: (Math.random() - 0.5) * 0.15,
-      size: Math.random() * 1.8 + 0.3,
-      opacity: Math.random() * 0.35 + 0.05
-    });
-  }
-
-  function spawnMeteor() {
-    if (Math.random() > 0.004) return;
-    const angle = Math.PI / 4 + (Math.random() - 0.5) * 0.5;
-    const speed = Math.random() * 3 + 2;
-    meteors.push({
-      x: Math.random() * pCanvas.width * 0.8 + pCanvas.width * 0.1,
-      y: Math.random() * pCanvas.height * 0.3,
-      vx: Math.cos(angle) * speed,
-      vy: Math.sin(angle) * speed,
-      life: 1,
-      len: Math.random() * 50 + 20
-    });
-  }
-
-  function animateParticles() {
-    pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
-    particles.forEach(p => {
-      p.x += p.vx;
-      p.y += p.vy;
-      if (p.x < 0) p.x = pCanvas.width;
-      if (p.x > pCanvas.width) p.x = 0;
-      if (p.y < 0) p.y = pCanvas.height;
-      if (p.y > pCanvas.height) p.y = 0;
-      pCtx.fillStyle = `rgba(74, 222, 128, ${p.opacity})`;
-      pCtx.beginPath();
-      pCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      pCtx.fill();
-    });
-    spawnMeteor();
-    for (let i = meteors.length - 1; i >= 0; i--) {
-      let m = meteors[i];
-      m.x += m.vx;
-      m.y += m.vy;
-      m.life -= 0.006;
-      if (m.life <= 0) { meteors.splice(i, 1); continue; }
-      pCtx.beginPath();
-      pCtx.moveTo(m.x, m.y);
-      pCtx.lineTo(m.x - m.vx * m.len, m.y - m.vy * m.len);
-      pCtx.strokeStyle = `rgba(74, 222, 128, ${m.life * 0.5})`;
-      pCtx.lineWidth = 1.5;
-      pCtx.stroke();
-      pCtx.beginPath();
-      pCtx.arc(m.x, m.y, 2, 0, Math.PI * 2);
-      pCtx.fillStyle = `rgba(163, 230, 53, ${m.life * 0.8})`;
-      pCtx.fill();
-    }
-    requestAnimationFrame(animateParticles);
-  }
-  animateParticles();
-
-  const cCanvas = document.getElementById('cursor-canvas');
-  const cCtx = cCanvas.getContext('2d');
-  let trail = [];
-  let sparkles = [];
-  const mouse = { x: 0, y: 0 };
-
-  window.addEventListener('resize', () => {
-    cCanvas.width = window.innerWidth;
-    cCanvas.height = window.innerHeight;
-  });
-  window.dispatchEvent(new Event('resize'));
-
-  window.addEventListener('mousemove', (e) => {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
-    trail.push({ x: mouse.x, y: mouse.y });
-    if (trail.length > 30) trail.shift();
-    for (let i = 0; i < 3; i++) {
-      const angle = Math.random() * Math.PI * 2;
-      const speed = Math.random() * 1.5 + 0.3;
-      sparkles.push({
-        x: mouse.x + (Math.random() - 0.5) * 12,
-        y: mouse.y + (Math.random() - 0.5) * 12,
-        vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed - 0.5,
-        life: 1,
-        size: Math.random() * 2 + 0.5,
-        color: Math.random() > 0.6 ? '#4ade80' : Math.random() > 0.5 ? '#a3e635' : '#ffffff',
-        star: Math.random() > 0.7
-      });
-    }
-  });
-
-  function drawStar(ctx, cx, cy, r) {
-    ctx.beginPath();
-    for (let i = 0; i < 5; i++) {
-      const angle = (i * 4 * Math.PI) / 5 - Math.PI / 2;
-      const method = i === 0 ? 'moveTo' : 'lineTo';
-      ctx[method](cx + Math.cos(angle) * r, cy + Math.sin(angle) * r);
-    }
-    ctx.closePath();
-  }
-
-  function animateTrail() {
-    cCtx.clearRect(0, 0, cCanvas.width, cCanvas.height);
-    if (trail.length > 1) {
-      for (let i = 1; i < trail.length; i++) {
-        const alpha = (i / trail.length) * 0.25;
-        const width = (i / trail.length) * 3;
-        cCtx.beginPath();
-        cCtx.moveTo(trail[i - 1].x, trail[i - 1].y);
-        cCtx.lineTo(trail[i].x, trail[i].y);
-        cCtx.strokeStyle = `rgba(74, 222, 128, ${alpha})`;
-        cCtx.lineWidth = width;
-        cCtx.stroke();
-      }
-    }
-    for (let i = sparkles.length - 1; i >= 0; i--) {
-      let s = sparkles[i];
-      s.x += s.vx;
-      s.y += s.vy;
-      s.vy += 0.01;
-      s.life -= 0.015;
-      if (s.life <= 0) sparkles.splice(i, 1);
-      else {
-        cCtx.globalAlpha = s.life * 0.8;
-        if (s.star) {
-          drawStar(cCtx, s.x, s.y, s.size);
-          cCtx.fillStyle = s.color;
-          cCtx.fill();
-        } else {
-          cCtx.fillStyle = s.color;
-          cCtx.beginPath();
-          cCtx.arc(s.x, s.y, s.size * 0.6, 0, Math.PI * 2);
-          cCtx.fill();
-        }
-      }
-    }
-    cCtx.globalAlpha = 1;
-    requestAnimationFrame(animateTrail);
-  }
-  animateTrail();
-
-  AOS.init({ duration: 600, once: true, offset: 80 });
-
   const hamburger = document.getElementById('hamburger');
   const navLinks = document.getElementById('navLinks');
   if (hamburger) {
     hamburger.addEventListener('click', () => {
       hamburger.classList.toggle('active');
       navLinks.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', hamburger.classList.contains('active'));
     });
     navLinks.querySelectorAll('a').forEach(a => {
       a.addEventListener('click', () => {
@@ -922,6 +957,18 @@
   }, { passive: true });
   backBtn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  document.querySelectorAll('.collapsible-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const card = btn.closest('.collapsible');
+      card.classList.toggle('expanded');
+      const isExpanded = card.classList.contains('expanded');
+      btn.setAttribute('aria-expanded', isExpanded);
+      btn.innerHTML = isExpanded
+        ? 'Show less <span class="toggle-icon">+</span>'
+        : 'Read more <span class="toggle-icon">+</span>';
+    });
   });
 </script>
 </body>

@@ -10,6 +10,7 @@
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#0c0c0c">
 <link rel="canonical" href="https://rxin-sngspr.github.io/johnsangaspar-portfolio">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>💧</text></svg>">
 <meta property="og:title" content="John San Gaspar | Executive Operations Partner">
 <meta property="og:description" content="Founder's right hand. I reduce cognitive load, build systems, and keep execution moving without hand-holding.">
 <meta property="og:url" content="https://rxin-sngspr.github.io/johnsangaspar-portfolio">
@@ -69,7 +70,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 <style>
   :root {
     --bg: #0c0c0c;
@@ -78,7 +78,8 @@
     --card: #1c1c1c;
     --border: #262626;
     --white: #e8e4dc;
-    --muted: #6b6b6b;
+    --muted: #8a8a8a;
+    --btn-text: #0a0a0a;
     --green: #4ade80;
     --green-dim: #1a3a2a;
     --green-subtle: #4ade8008;
@@ -98,22 +99,22 @@
     overflow-x: hidden;
   }
   a { color: inherit; text-decoration: none; }
-
-  #cursor-canvas {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    pointer-events: none;
-    z-index: 9999;
+  :focus-visible {
+    outline: 2px solid var(--green);
+    outline-offset: 2px;
   }
-
-  /* particles background canvas */
-  #particle-canvas {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    pointer-events: none;
-    z-index: 0;
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--green);
+    color: #000;
+    padding: 8px 16px;
+    z-index: 9999;
+    transition: top 0.2s;
+  }
+  .skip-link:focus {
+    top: 0;
   }
 
   /* floating background orbs */
@@ -196,6 +197,7 @@
     align-items: center;
     justify-content: space-between;
     background: rgba(12,12,12,0.92);
+    -webkit-backdrop-filter: blur(14px);
     backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--border);
   }
@@ -220,7 +222,7 @@
   .nav-links a:hover { color: var(--white); border-bottom-color: var(--green); }
   .nav-cta {
     background: var(--green);
-    color: #0a0a0a;
+    color: var(--btn-text);
     font-weight: 600;
     font-size: 0.78rem;
     padding: 8px 18px;
@@ -249,6 +251,7 @@
       linear-gradient(90deg, var(--border) 1px, transparent 1px);
     background-size: 60px 60px;
     opacity: 0.12;
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 100%);
     mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 100%);
     z-index: 0;
   }
@@ -327,7 +330,7 @@
   }
   .btn-primary {
     background: var(--green);
-    color: #0a0a0a;
+    color: var(--btn-text);
     font-weight: 600;
     font-size: 0.82rem;
     padding: 11px 24px;
@@ -398,6 +401,7 @@
   .float-tag {
     position: absolute;
     background: rgba(28,28,28,0.85);
+    -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
     border: 1px solid var(--border);
     border-radius: 100px;
@@ -483,7 +487,7 @@
     align-items: center;
   }
   .about-text p {
-    color: #989898;
+    color: var(--muted);
     font-size: 0.88rem;
     line-height: 1.8;
     margin-bottom: 14px;
@@ -540,7 +544,7 @@
   }
   .tool-item:hover img { opacity: 0.85; transform: scale(1.1); }
   .tool-item span {
-    font-size: 0.5rem;
+    font-size: 0.6rem;
     color: var(--muted);
     text-transform: uppercase;
     letter-spacing: 0.2px;
@@ -665,7 +669,7 @@
   .testi-stars { color: var(--green); font-size: 0.75rem; letter-spacing: 2px; margin-bottom: 12px; }
   .testi-text {
     font-size: 0.8rem;
-    color: #a0a0a0;
+    color: var(--muted);
     line-height: 1.75;
     margin-bottom: 16px;
     font-style: italic;
@@ -720,6 +724,11 @@
     align-items: center;
     transition: color 0.2s;
     user-select: none;
+    background: none;
+    border: none;
+    color: inherit;
+    width: 100%;
+    text-align: left;
   }
   .faq-q:hover { color: var(--green); }
   .faq-q .faq-toggle { font-size: 1.1rem; color: var(--muted); transition: transform 0.2s; }
@@ -770,14 +779,13 @@
     font-family: var(--font-body);
     font-size: 0.82rem;
     transition: border-color 0.2s;
-    outline: none;
   }
   .form-group input:focus,
   .form-group textarea:focus { border-color: var(--green); }
   .form-group textarea { min-height: 80px; resize: vertical; }
   .form-submit {
     background: var(--green);
-    color: #0a0a0a;
+    color: var(--btn-text);
     font-weight: 600;
     font-size: 0.82rem;
     padding: 10px 22px;
@@ -857,7 +865,7 @@
   }
   .footer-logo span { color: var(--green); }
   .footer-tagline { font-size: 0.75rem; color: var(--muted); }
-  .footer-copy { font-size: 0.7rem; color: #3a3a3a; margin-top: 10px; }
+  .footer-copy { font-size: 0.7rem; color: var(--muted); margin-top: 10px; }
 
   .footer-right {
     display: flex;
@@ -897,7 +905,7 @@
   }
 
 
-  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 12px; }
   .hamburger span { width: 20px; height: 2px; background: var(--white); border-radius: 2px; transition: transform 0.2s, opacity 0.2s; }
   .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   .hamburger.active span:nth-child(2) { opacity: 0; }
@@ -931,6 +939,7 @@
       display: none;
       position: fixed; top: 56px; left: 0; right: 0;
       background: rgba(12,12,12,0.97);
+      -webkit-backdrop-filter: blur(14px);
       backdrop-filter: blur(14px);
       flex-direction: column; gap: 0;
       padding: 8px 16px 16px;
@@ -962,8 +971,9 @@
 </head>
 <body>
 
-<canvas id="cursor-canvas"></canvas>
-<canvas id="particle-canvas"></canvas>
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+
 <div class="bg-orb bg-orb-1"></div>
 <div class="bg-orb bg-orb-2"></div>
 <div class="bg-orb bg-orb-3"></div>
@@ -982,12 +992,13 @@
     <li><a href="#book">Book</a></li>
     <li><a href="#contact-section">Contact</a></li>
   </ul>
-  <a href="https://calendly.com/rainsngspr/discovery-call-with-john" target="_blank" class="nav-cta nav-cta-desktop">Book a Call</a>
-  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+  <a href="https://calendly.com/rainsngspr/discovery-call-with-john" target="_blank" rel="noopener noreferrer" class="nav-cta nav-cta-desktop">Book a Call</a>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
+<main id="main-content">
 <section id="home">
   <div class="hero-bg-grid"></div>
 
@@ -1006,7 +1017,7 @@
   </p>
 
   <div class="hero-actions">
-    <a href="https://calendly.com/rainsngspr/discovery-call-with-john" target="_blank" class="btn-primary">Book a Discovery Call</a>
+    <a href="https://calendly.com/rainsngspr/discovery-call-with-john" target="_blank" rel="noopener noreferrer" class="btn-primary">Book a Discovery Call</a>
     <a href="work.html" class="btn-outline">See My Work</a>
   </div>
 
@@ -1014,7 +1025,7 @@
     <div class="hero-ring"><div class="orb"></div></div>
     <div class="hero-ring-2"></div>
     <div class="hero-photo">
-      <img src="assets/rainpicture.jpg" alt="John San Gaspar" />
+      <img src="assets/rainpicture.jpg" alt="John San Gaspar" width="170" height="170" />
     </div>
     <span class="float-tag t1">Sales Operations</span>
     <span class="float-tag t2">Workflow Systems</span>
@@ -1023,7 +1034,7 @@
   </div>
 </section>
 
-<div class="stats-strip" data-aos="fade-up">
+<div class="stats-strip" >
   <div class="stat-item">
     <div class="stat-number">3+</div>
     <div class="stat-label">Years Experience</div>
@@ -1042,7 +1053,7 @@
   </div>
 </div>
 
-<section id="about" data-aos="fade-up">
+<section id="about" >
   <div class="about-text">
     <div class="section-label">About Me</div>
     <h2 class="section-title">I keep founders focused and operations moving.</h2>
@@ -1067,7 +1078,7 @@
   </div>
 </section>
 
-<div class="tools-section" data-aos="fade-up">
+<div class="tools-section" >
   <div class="section-label">Tool Stack</div>
   <h2 class="section-title">The tools I work with daily.</h2>
   <p class="section-sub">From CRM to creative, I adapt to your stack fast.</p>
@@ -1114,7 +1125,7 @@
   </div>
 </div>
 
-<section id="solve" data-aos="fade-up">
+<section id="solve" >
   <div class="section-inner">
     <div class="solve-header">
       <div class="section-label">Problems I Solve</div>
@@ -1138,7 +1149,7 @@
   </div>
 </section>
 
-<section id="services" data-aos="fade-up">
+<section id="services" >
   <div class="services-header">
     <div>
       <div class="section-label">Services</div>
@@ -1194,7 +1205,7 @@
   </div>
 </section>
 
-<section id="testimonials" data-aos="fade-up">
+<section id="testimonials" >
   <div>
     <div class="section-label">What People Say</div>
     <h2 class="section-title">Trusted by leaders who measure results.</h2>
@@ -1236,51 +1247,51 @@
   </div>
 </section>
 
-<section id="faq" data-aos="fade-up">
+<section id="faq" >
   <div class="section-inner">
     <div class="section-label">FAQs</div>
     <h2 class="section-title">Questions founders usually ask.</h2>
     <div class="faq-grid">
       <div class="faq-item">
-        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')" aria-expanded="false">
           How do you work with founders?
           <span class="faq-toggle">+</span>
-        </div>
+        </button>
         <div class="faq-a">I work as an extension of your team, not a separate vendor. I integrate into your existing tools and workflows, take ownership of the operational layer, and report on progress without needing constant direction. Most of my clients check in once a day or less.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')" aria-expanded="false">
           What time zone are you in?
           <span class="faq-toggle">+</span>
-        </div>
+        </button>
         <div class="faq-a">I am based in the Philippines (PHT, UTC+8). I work across US, Canadian, UK, and AU time zones. My typical schedule overlaps with your business hours, and I adjust as needed for urgent needs or key meetings.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')" aria-expanded="false">
           What tools do you use?
           <span class="faq-toggle">+</span>
-        </div>
+        </button>
         <div class="faq-a">I work with 30+ tools including ClickUp, Notion, Asana, HubSpot, Slack, Google Workspace, Zapier, and more. I adapt to your stack within days. If you use something I have not seen, I learn it fast.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')" aria-expanded="false">
           How do you handle communication?
           <span class="faq-toggle">+</span>
-        </div>
+        </button>
         <div class="faq-a">Whatever works for you. Slack, email, Telegram, WhatsApp, or a weekly async report. I adapt to your preferred style and make sure you get updates without added noise.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')" aria-expanded="false">
           What is the first step?
           <span class="faq-toggle">+</span>
-        </div>
+        </button>
         <div class="faq-a">A 15-minute discovery call. We talk about what is slowing you down, what you need handled, and whether we are a good fit. If it works, I start within the week. If not, I will point you to someone who can help.</div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="contact-section" data-aos="fade-up">
+<section id="contact-section" >
   <div class="section-inner">
     <div class="contact-grid">
       <div class="contact-left">
@@ -1306,7 +1317,7 @@
           <div class="form-error" id="formError"></div>
         </form>
 
-        <div class="form-success" id="formSuccess">
+        <div class="form-success" id="formSuccess" aria-live="polite">
           <h3>Got it.</h3>
           <p>I will be in touch soon. <br/> John</p>
         </div>
@@ -1316,7 +1327,7 @@
         <div class="contact-method">
           <h4>Book a discovery call</h4>
           <p>Prefer to talk first? Pick a time that works for you.</p>
-          <a href="https://calendly.com/rainsngspr/discovery-call-with-john" target="_blank" rel="noopener">Book on Calendly &rarr;</a>
+          <a href="https://calendly.com/rainsngspr/discovery-call-with-john" target="_blank" rel="noopener noreferrer">Book on Calendly &rarr;</a>
         </div>
         <div class="contact-method">
           <h4>Email me directly</h4>
@@ -1333,7 +1344,7 @@
   </div>
 </section>
 
-<section id="book" data-aos="fade-up">
+<section id="book" >
   <div class="section-inner" style="text-align:center;">
     <div class="section-label">Book a Call</div>
     <h2 class="section-title">Pick a time that works for you.</h2>
@@ -1345,7 +1356,7 @@
   </div>
 </section>
 
-<div class="cta-banner" data-aos="fade-up">
+<div class="cta-banner" >
   <h2>Ready to lighten your load?</h2>
   <p>One conversation is all it takes to see if we are the right fit.</p>
   <div class="cta-actions">
@@ -1353,6 +1364,8 @@
     <a href="work.html" class="btn-outline">See My Work First</a>
   </div>
 </div>
+
+</main>
 
 <footer>
   <div class="footer-left">
@@ -1385,166 +1398,8 @@
 <button id="backToTop" aria-label="Back to top">
   <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
 </button>
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
 <script defer>
-  // PARTICLES BACKGROUND + SHOOTING STARS
-  const pCanvas = document.getElementById('particle-canvas');
-  const pCtx = pCanvas.getContext('2d');
-  let particles = [];
-  let meteors = [];
-
-  function resizeParticles() {
-    pCanvas.width = window.innerWidth;
-    pCanvas.height = window.innerHeight;
-  }
-  window.addEventListener('resize', resizeParticles);
-  resizeParticles();
-
-  for (let i = 0; i < 45; i++) {
-    particles.push({
-      x: Math.random() * pCanvas.width,
-      y: Math.random() * pCanvas.height,
-      vx: (Math.random() - 0.5) * 0.15,
-      vy: (Math.random() - 0.5) * 0.15,
-      size: Math.random() * 1.8 + 0.3,
-      opacity: Math.random() * 0.35 + 0.05
-    });
-  }
-
-  function spawnMeteor() {
-    if (Math.random() > 0.004) return;
-    const angle = Math.PI / 4 + (Math.random() - 0.5) * 0.5;
-    const speed = Math.random() * 3 + 2;
-    meteors.push({
-      x: Math.random() * pCanvas.width * 0.8 + pCanvas.width * 0.1,
-      y: Math.random() * pCanvas.height * 0.3,
-      vx: Math.cos(angle) * speed,
-      vy: Math.sin(angle) * speed,
-      life: 1,
-      len: Math.random() * 50 + 20
-    });
-  }
-
-  function animateParticles() {
-    pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
-    particles.forEach(p => {
-      p.x += p.vx;
-      p.y += p.vy;
-      if (p.x < 0) p.x = pCanvas.width;
-      if (p.x > pCanvas.width) p.x = 0;
-      if (p.y < 0) p.y = pCanvas.height;
-      if (p.y > pCanvas.height) p.y = 0;
-      pCtx.fillStyle = `rgba(74, 222, 128, ${p.opacity})`;
-      pCtx.beginPath();
-      pCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      pCtx.fill();
-    });
-    spawnMeteor();
-    for (let i = meteors.length - 1; i >= 0; i--) {
-      let m = meteors[i];
-      m.x += m.vx;
-      m.y += m.vy;
-      m.life -= 0.006;
-      if (m.life <= 0) { meteors.splice(i, 1); continue; }
-      pCtx.beginPath();
-      pCtx.moveTo(m.x, m.y);
-      pCtx.lineTo(m.x - m.vx * m.len, m.y - m.vy * m.len);
-      pCtx.strokeStyle = `rgba(74, 222, 128, ${m.life * 0.5})`;
-      pCtx.lineWidth = 1.5;
-      pCtx.stroke();
-      pCtx.beginPath();
-      pCtx.arc(m.x, m.y, 2, 0, Math.PI * 2);
-      pCtx.fillStyle = `rgba(163, 230, 53, ${m.life * 0.8})`;
-      pCtx.fill();
-    }
-    requestAnimationFrame(animateParticles);
-  }
-  animateParticles();
-
-  // SPARKLE CURSOR TRAIL
-  const cCanvas = document.getElementById('cursor-canvas');
-  const cCtx = cCanvas.getContext('2d');
-  let trail = [];
-  let sparkles = [];
-  const mouse = { x: 0, y: 0 };
-
-  window.addEventListener('resize', () => {
-    cCanvas.width = window.innerWidth;
-    cCanvas.height = window.innerHeight;
-  });
-  window.dispatchEvent(new Event('resize'));
-
-  window.addEventListener('mousemove', (e) => {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
-    trail.push({ x: mouse.x, y: mouse.y });
-    if (trail.length > 30) trail.shift();
-    for (let i = 0; i < 3; i++) {
-      const angle = Math.random() * Math.PI * 2;
-      const speed = Math.random() * 1.5 + 0.3;
-      sparkles.push({
-        x: mouse.x + (Math.random() - 0.5) * 12,
-        y: mouse.y + (Math.random() - 0.5) * 12,
-        vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed - 0.5,
-        life: 1,
-        size: Math.random() * 2 + 0.5,
-        color: Math.random() > 0.6 ? '#4ade80' : Math.random() > 0.5 ? '#a3e635' : '#ffffff',
-        star: Math.random() > 0.7
-      });
-    }
-  });
-
-  function drawStar(ctx, cx, cy, r) {
-    ctx.beginPath();
-    for (let i = 0; i < 5; i++) {
-      const angle = (i * 4 * Math.PI) / 5 - Math.PI / 2;
-      const method = i === 0 ? 'moveTo' : 'lineTo';
-      ctx[method](cx + Math.cos(angle) * r, cy + Math.sin(angle) * r);
-    }
-    ctx.closePath();
-  }
-
-  function animateTrail() {
-    cCtx.clearRect(0, 0, cCanvas.width, cCanvas.height);
-    if (trail.length > 1) {
-      for (let i = 1; i < trail.length; i++) {
-        const alpha = (i / trail.length) * 0.25;
-        const width = (i / trail.length) * 3;
-        cCtx.beginPath();
-        cCtx.moveTo(trail[i - 1].x, trail[i - 1].y);
-        cCtx.lineTo(trail[i].x, trail[i].y);
-        cCtx.strokeStyle = `rgba(74, 222, 128, ${alpha})`;
-        cCtx.lineWidth = width;
-        cCtx.stroke();
-      }
-    }
-    for (let i = sparkles.length - 1; i >= 0; i--) {
-      let s = sparkles[i];
-      s.x += s.vx;
-      s.y += s.vy;
-      s.vy += 0.01;
-      s.life -= 0.015;
-      if (s.life <= 0) sparkles.splice(i, 1);
-      else {
-        cCtx.globalAlpha = s.life * 0.8;
-        if (s.star) {
-          drawStar(cCtx, s.x, s.y, s.size);
-          cCtx.fillStyle = s.color;
-          cCtx.fill();
-        } else {
-          cCtx.fillStyle = s.color;
-          cCtx.beginPath();
-          cCtx.arc(s.x, s.y, s.size * 0.6, 0, Math.PI * 2);
-          cCtx.fill();
-        }
-      }
-    }
-    cCtx.globalAlpha = 1;
-    requestAnimationFrame(animateTrail);
-  }
-  animateTrail();
-
   // CONTACT FORM
   const contactForm = document.getElementById('contactForm');
   const submitBtn = document.getElementById('submitBtn');
@@ -1579,15 +1434,13 @@
     });
   }
 
-  // AOS INIT
-  AOS.init({ duration: 600, once: true, offset: 80 });
-
   // MOBILE NAV
   const hamburger = document.getElementById('hamburger');
   const navLinks = document.getElementById('navLinks');
   hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('active');
     navLinks.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', hamburger.classList.contains('active'));
   });
   navLinks.querySelectorAll('a').forEach(a => {
     a.addEventListener('click', () => {
@@ -1614,9 +1467,16 @@
       if (window.scrollY >= s.offsetTop - 120) current = s.getAttribute('id');
     });
     navLinkItems.forEach(a => {
-      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--white)' : '';
+      const isActive = a.getAttribute('href') === '#' + current;
+      if (isActive) {
+        a.setAttribute('aria-current', 'page');
+        a.style.color = 'var(--white)';
+      } else {
+        a.removeAttribute('aria-current');
+        if (a.style.color) a.style.color = '';
+      }
     });
-  });
+  }, { passive: true });
 </script>
 </body>
 </html>
