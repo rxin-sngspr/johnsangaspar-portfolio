@@ -8,13 +8,13 @@
 <meta name="keywords" content="Executive Operations case studies, operations portfolio, workflow automation results, EA metrics, founder support, Notion portfolio, Canva portfolio, SOP samples">
 <meta name="author" content="John San Gaspar">
 <meta name="robots" content="index, follow">
-<meta name="theme-color" content="#0f0f0f">
-<link rel="canonical" href="https://rxin-sngspr.github.io/johnsangaspar-portfolio/work.html">
+<meta name="theme-color" content="#0c0c0c">
+<link rel="canonical" href="https://johnops.vercel.app/work.html">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>💧</text></svg>">
 <meta property="og:title" content="Work & Results - John San Gaspar | Executive Operations Partner">
 <meta property="og:description" content="Real case studies and work samples from John San Gaspar. Pipeline acceleration, operations overhaul, and customer experience transformation.">
-<meta property="og:url" content="https://rxin-sngspr.github.io/johnsangaspar-portfolio/work.html">
-<meta property="og:image" content="https://rxin-sngspr.github.io/johnsangaspar-portfolio/assets/rainpicture.jpg">
+<meta property="og:url" content="https://johnops.vercel.app/work.html">
+<meta property="og:image" content="https://johnops.vercel.app/assets/rainpicture.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:type" content="website">
@@ -29,9 +29,9 @@
   "@type": "Person",
   "name": "John San Gaspar",
   "jobTitle": "Executive Operations Partner",
-  "url": "https://rxin-sngspr.github.io/johnsangaspar-portfolio",
+  "url": "https://johnops.vercel.app",
   "email": "rainsngspr@gmail.com",
-  "image": "https://rxin-sngspr.github.io/johnsangaspar-portfolio/assets/rainpicture.jpg",
+  "image": "https://johnops.vercel.app/assets/rainpicture.jpg",
   "sameAs": ["https://linkedin.com/in/ea-johnsngspr"]
 }
 </script>
@@ -436,7 +436,7 @@
   .sample-card-img img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     display: block;
     transition: transform 0.3s ease;
   }
@@ -476,7 +476,7 @@
 
   #backToTop {
     position: fixed; bottom: 28px; right: 28px;
-    width: 42px; height: 42px;
+    width: 44px; height: 44px;
     border-radius: 50%;
     background: var(--bg3);
     border: 1px solid var(--border);
@@ -639,6 +639,13 @@
     .cta-banner { padding: 56px 16px; }
 
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bg-orb, .bg-shape, .float-tag {
+      animation: none !important;
+    }
+    html { scroll-behavior: auto; }
+  }
 </style>
 </head>
 <body>
@@ -688,7 +695,7 @@
           <div class="case-type">Sales Operations</div>
           <div class="case-title">Built a pipeline engine from scratch</div>
           <div class="case-client">B2B Services Company | US-Based, Remote</div>
-          <div class="collapsible-content">
+          <div class="collapsible-content" id="case-panel-1" role="region" aria-labelledby="case-toggle-1">
             <div class="case-section">
               <div class="case-section-label">The Situation</div>
               <p>The CEO was handling sales outreach alone. Leads were falling through the cracks, follow-ups were inconsistent, and there was no system to track where prospects were in the pipeline.</p>
@@ -698,7 +705,7 @@
               <p>Set up HubSpot as the single source of truth for all leads. Built automated outreach sequences in Apollo and Zapier, created a structured pipeline view with clear stages, and designed an onboarding SOP that turned new clients from signed to active in half the usual time.</p>
             </div>
           </div>
-          <button class="collapsible-toggle" aria-expanded="false">Read more <span class="toggle-icon">+</span></button>
+          <button class="collapsible-toggle" id="case-toggle-1" aria-expanded="false" aria-controls="case-panel-1">Read more <span class="toggle-icon">+</span></button>
         </div>
         <div class="case-right">
           <div class="case-impact">
@@ -718,7 +725,7 @@
           <div class="case-type">Operations & Systems</div>
           <div class="case-title">Replaced chaos with a system that scales</div>
           <div class="case-client">Tech Startup | Fully Remote Team</div>
-          <div class="collapsible-content">
+          <div class="collapsible-content" id="case-panel-2" role="region" aria-labelledby="case-toggle-2">
             <div class="case-section">
               <div class="case-section-label">The Situation</div>
               <p>No documented processes. No centralized task tracking. Every decision went through the founder. Onboarding took weeks, and nothing was repeatable. The team was productive in spite of the systems, not because of them.</p>
@@ -728,7 +735,7 @@
               <p>Built a full operations library in Notion covering every recurring process. Set up ClickUp with structured workflows, ownership assignments, and deadline tracking. Created checklists that turned complex multi-step tasks into repeatable plays. Trained the team on the new system and made sure it stuck.</p>
             </div>
           </div>
-          <button class="collapsible-toggle" aria-expanded="false">Read more <span class="toggle-icon">+</span></button>
+          <button class="collapsible-toggle" id="case-toggle-2" aria-expanded="false" aria-controls="case-panel-2">Read more <span class="toggle-icon">+</span></button>
         </div>
         <div class="case-right">
           <div class="case-impact">
@@ -748,7 +755,7 @@
           <div class="case-type">Customer Experience</div>
           <div class="case-title">Turned a high-volume support desk into a machine</div>
           <div class="case-client">BPO & Customer Service | Philippines</div>
-          <div class="collapsible-content">
+          <div class="collapsible-content" id="case-panel-3" role="region" aria-labelledby="case-toggle-3">
             <div class="case-section">
               <div class="case-section-label">The Situation</div>
               <p>60+ daily inquiries with no triage system. Complaints were rising, response times were inconsistent across shifts, and CSAT scores were unpredictable. New hires took too long to get productive.</p>
@@ -758,7 +765,7 @@
               <p>Built performance tracking dashboards in Excel and Slack so every team member could see their own metrics in real time. Designed a priority triage system that routed urgent issues to the right person immediately. Trained and mentored new hires, standardizing the process so quality stayed consistent regardless of who was on shift.</p>
             </div>
           </div>
-          <button class="collapsible-toggle" aria-expanded="false">Read more <span class="toggle-icon">+</span></button>
+          <button class="collapsible-toggle" id="case-toggle-3" aria-expanded="false" aria-controls="case-panel-3">Read more <span class="toggle-icon">+</span></button>
         </div>
         <div class="case-right">
           <div class="case-impact">
@@ -778,7 +785,7 @@
       <div class="case-card case-card--hero" >
         <div class="case-hero">
           <div class="phone-mockup">
-            <img src="assets/Serenity.png" alt="Serenity couples journaling app interface showing shared journal entries with warm rose-toned design" width="220" height="440" loading="lazy" />
+            <img src="assets/Serenity.png" alt="Serenity couples journaling app interface showing shared journal entries with warm rose-toned design" width="240" height="480" loading="lazy" />
           </div>
         </div>
         <div class="case-body">
@@ -805,6 +812,7 @@
                 <li>Built entirely with Flutter, deployable on Android and iOS from a single codebase</li>
               </ul>
             </div>
+            <a href="https://drive.google.com/drive/folders/1Z_EV5C-bL5wBDoBuNxhDoDqcsg6DRwW2" target="_blank" rel="noopener" class="case-preview-btn">See what Serenity looks like &rarr;</a>
           </div>
         </div>
       </div>

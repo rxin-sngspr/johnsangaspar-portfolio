@@ -9,12 +9,12 @@
 <meta name="author" content="John San Gaspar">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#0c0c0c">
-<link rel="canonical" href="https://rxin-sngspr.github.io/johnsangaspar-portfolio">
+<link rel="canonical" href="https://johnops.vercel.app">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>💧</text></svg>">
 <meta property="og:title" content="John San Gaspar | Executive Operations Partner">
 <meta property="og:description" content="Founder's right hand. I reduce cognitive load, build systems, and keep execution moving without hand-holding.">
-<meta property="og:url" content="https://rxin-sngspr.github.io/johnsangaspar-portfolio">
-<meta property="og:image" content="https://rxin-sngspr.github.io/johnsangaspar-portfolio/assets/rainpicture.jpg">
+<meta property="og:url" content="https://johnops.vercel.app">
+<meta property="og:image" content="https://johnops.vercel.app/assets/rainpicture.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:type" content="website">
@@ -29,10 +29,10 @@
   "@type": "Person",
   "name": "John San Gaspar",
   "jobTitle": "Executive Operations Partner",
-  "url": "https://rxin-sngspr.github.io/johnsangaspar-portfolio",
+  "url": "https://johnops.vercel.app",
   "email": "rainsngspr@gmail.com",
   "telephone": "+639544031974",
-  "image": "https://rxin-sngspr.github.io/johnsangaspar-portfolio/assets/rainpicture.jpg",
+  "image": "https://johnops.vercel.app/assets/rainpicture.jpg",
   "sameAs": ["https://linkedin.com/in/ea-johnsngspr"],
   "worksFor": {
     "@type": "Organization",
@@ -918,7 +918,7 @@
 
   #backToTop {
     position: fixed; bottom: 28px; right: 28px;
-    width: 42px; height: 42px;
+    width: 44px; height: 44px;
     border-radius: 50%;
     background: var(--bg3);
     border: 1px solid var(--border);
@@ -966,6 +966,13 @@
     .footer-links { flex-wrap: wrap; justify-content: center; gap: 16px; }
     #contact-section { padding: 48px 16px; }
     .cta-banner { padding: 56px 16px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bg-orb, .bg-shape, .hero-ring, .hero-ring-2, .float-tag, .hero-badge::before {
+      animation: none !important;
+    }
+    html { scroll-behavior: auto; }
   }
 </style>
 </head>
@@ -1253,39 +1260,39 @@
     <h2 class="section-title">Questions founders usually ask.</h2>
     <div class="faq-grid">
       <div class="faq-item">
-        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')" aria-expanded="false">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-panel-1">
           How do you work with founders?
           <span class="faq-toggle">+</span>
         </button>
-        <div class="faq-a">I work as an extension of your team, not a separate vendor. I integrate into your existing tools and workflows, take ownership of the operational layer, and report on progress without needing constant direction. Most of my clients check in once a day or less.</div>
+        <div class="faq-a" id="faq-panel-1" role="region" aria-labelledby="faq-panel-1">I work as an extension of your team, not a separate vendor. I integrate into your existing tools and workflows, take ownership of the operational layer, and report on progress without needing constant direction. Most of my clients check in once a day or less.</div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')" aria-expanded="false">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-panel-2">
           What time zone are you in?
           <span class="faq-toggle">+</span>
         </button>
-        <div class="faq-a">I am based in the Philippines (PHT, UTC+8). I work across US, Canadian, UK, and AU time zones. My typical schedule overlaps with your business hours, and I adjust as needed for urgent needs or key meetings.</div>
+        <div class="faq-a" id="faq-panel-2" role="region" aria-labelledby="faq-panel-2">I am based in the Philippines (PHT, UTC+8). I work across US, Canadian, UK, and AU time zones. My typical schedule overlaps with your business hours, and I adjust as needed for urgent needs or key meetings.</div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')" aria-expanded="false">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-panel-3">
           What tools do you use?
           <span class="faq-toggle">+</span>
         </button>
-        <div class="faq-a">I work with 30+ tools including ClickUp, Notion, Asana, HubSpot, Slack, Google Workspace, Zapier, and more. I adapt to your stack within days. If you use something I have not seen, I learn it fast.</div>
+        <div class="faq-a" id="faq-panel-3" role="region" aria-labelledby="faq-panel-3">I work with 30+ tools including ClickUp, Notion, Asana, HubSpot, Slack, Google Workspace, Zapier, and more. I adapt to your stack within days. If you use something I have not seen, I learn it fast.</div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')" aria-expanded="false">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-panel-4">
           How do you handle communication?
           <span class="faq-toggle">+</span>
         </button>
-        <div class="faq-a">Whatever works for you. Slack, email, Telegram, WhatsApp, or a weekly async report. I adapt to your preferred style and make sure you get updates without added noise.</div>
+        <div class="faq-a" id="faq-panel-4" role="region" aria-labelledby="faq-panel-4">Whatever works for you. Slack, email, Telegram, WhatsApp, or a weekly async report. I adapt to your preferred style and make sure you get updates without added noise.</div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')" aria-expanded="false">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-panel-5">
           What is the first step?
           <span class="faq-toggle">+</span>
         </button>
-        <div class="faq-a">A 15-minute discovery call. We talk about what is slowing you down, what you need handled, and whether we are a good fit. If it works, I start within the week. If not, I will point you to someone who can help.</div>
+        <div class="faq-a" id="faq-panel-5" role="region" aria-labelledby="faq-panel-5">A 15-minute discovery call. We talk about what is slowing you down, what you need handled, and whether we are a good fit. If it works, I start within the week. If not, I will point you to someone who can help.</div>
       </div>
     </div>
   </div>
@@ -1456,6 +1463,15 @@
   }, { passive: true });
   backBtn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // FAQ TOGGLE
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.toggle('open');
+      btn.setAttribute('aria-expanded', isOpen);
+    });
   });
 
   // ACTIVE NAV
