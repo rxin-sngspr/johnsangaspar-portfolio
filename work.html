@@ -491,6 +491,15 @@
   #backToTop.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
   #backToTop:hover { background: var(--green-dim); border-color: var(--green); color: var(--green); }
 
+  #cursorTrail {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9998;
+  }
+
   .btn-primary {
     background: var(--green);
     color: var(--btn-text);
@@ -660,6 +669,8 @@
 <div class="bg-shape bg-shape-2"></div>
 <div class="bg-shape bg-shape-3"></div>
 
+<canvas id="cursorTrail" aria-hidden="true"></canvas>
+
 <nav>
   <a href="index.html" class="nav-logo">John San Gaspar<span>.</span></a>
   <ul class="nav-links" id="navLinks">
@@ -812,7 +823,7 @@
                 <li>Built entirely with Flutter, deployable on Android and iOS from a single codebase</li>
               </ul>
             </div>
-            <a href="https://drive.google.com/drive/folders/1Z_EV5C-bL5wBDoBuNxhDoDqcsg6DRwW2" target="_blank" rel="noopener" class="case-preview-btn">See what Serenity looks like &rarr;</a>
+            <a href="https://drive.google.com/drive/folders/1Z_EV5C-bL5BwDoBuNxhDoDqcsg6DRwW2?usp=sharing" target="_blank" rel="noopener" class="case-preview-btn">See what Serenity looks like &rarr;</a>
           </div>
         </div>
       </div>
@@ -968,6 +979,113 @@
         : 'Read more <span class="toggle-icon">+</span>';
     });
   });
+</script>
+
+<script>
+  // CURSOR TRAIL
+  (function () {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!window.matchMedia('(pointer: fine)').matches) return;
+
+    const canvas = document.getElementById('cursorTrail');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    let w, h, dpr;
+    function resize() {
+      dpr = window.devicePixelRatio || 1;
+      w = window.innerWidth;
+      h = window.innerHeight;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      canvas.style.width = w + 'px';
+      canvas.style.height = h + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    const points = [];
+    const MAX_AGE = 650;
+    const MAX_POINTS = 80;
+
+    // Sparkle particles
+    const sparks = [];
+    const MAX_SPARKS = 40;
+    let lastSpawn = 0;
+
+    window.addEventListener('pointermove', (e) => {
+      points.push({ x: e.clientX, y: e.clientY, t: performance.now() });
+      if (points.length > MAX_POINTS) points.shift();
+
+      const now = performance.now();
+      if (now - lastSpawn > 45 && sparks.length < MAX_SPARKS) {
+        lastSpawn = now;
+        sparks.push({
+          x: e.clientX + (Math.random() - 0.5) * 18,
+          y: e.clientY + (Math.random() - 0.5) * 18,
+          size: 1 + Math.random() * 1.6,
+          life: 0,
+          maxLife: 500 + Math.random() * 350,
+          phase: Math.random() * Math.PI * 2,
+          speed: 0.6 + Math.random() * 0.8
+        });
+      }
+    }, { passive: true });
+
+    function draw(now) {
+      ctx.clearRect(0, 0, w, h);
+      while (points.length && now - points[0].t > MAX_AGE) points.shift();
+
+      if (points.length >= 2) {
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        ctx.shadowColor = 'rgba(74, 222, 128, 0.85)';
+        ctx.shadowBlur = 6;
+        for (let i = 0; i < points.length - 1; i++) {
+          const p = points[i];
+          const q = points[i + 1];
+          const age = now - p.t;
+          const alpha = Math.max(0, 1 - age / MAX_AGE);
+          const width = 1 + (i / points.length) * 1.6;
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(q.x, q.y);
+          ctx.strokeStyle = 'rgba(74, 222, 128, ' + (alpha * 0.55).toFixed(3) + ')';
+          ctx.lineWidth = width;
+          ctx.stroke();
+        }
+        ctx.shadowBlur = 0;
+      }
+
+      // Sparkles
+      ctx.shadowColor = 'rgba(74, 222, 128, 0.9)';
+      ctx.shadowBlur = 5;
+      for (let i = sparks.length - 1; i >= 0; i--) {
+        const s = sparks[i];
+        s.life += 16;
+        if (s.life >= s.maxLife) { sparks.splice(i, 1); continue; }
+
+        const t = s.life / s.maxLife;
+        const twinkle = 0.5 + 0.5 * Math.sin(s.phase + s.life * 0.02 * s.speed);
+        const alpha = (1 - t) * (0.35 + 0.5 * twinkle);
+        const size = s.size * (1 - t * 0.5);
+
+        ctx.beginPath();
+        ctx.moveTo(s.x, s.y - size);
+        ctx.lineTo(s.x + size * 0.4, s.y);
+        ctx.lineTo(s.x, s.y + size);
+        ctx.lineTo(s.x - size * 0.4, s.y);
+        ctx.closePath();
+        ctx.fillStyle = 'rgba(74, 222, 128, ' + alpha.toFixed(3) + ')';
+        ctx.fill();
+      }
+      ctx.shadowBlur = 0;
+
+      requestAnimationFrame(draw);
+    }
+    requestAnimationFrame(draw);
+  })();
 </script>
 </body>
 </html>
